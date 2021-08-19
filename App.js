@@ -1,21 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
+/* eslint-disable prettier/prettier */
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import MainStackNavigation from './Navigation'
+// import AlertBox from './components/AlertBox';
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <View style={styles.container} >
+        <MainStackNavigation />
+        {/* <AlertBox /> */}
+      </View>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  container:{
+    height:'100%',
+    flex:1,
   },
-});
+})
