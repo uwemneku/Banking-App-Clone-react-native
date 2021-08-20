@@ -12,6 +12,8 @@
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/stack": "^6.0.7",
     "expo": "~42.0.1",
+    "expo-app-loading": "^1.1.2",
+    "expo-asset": "~8.3.3",
     "expo-contacts": "~9.2.5",
     "expo-image-picker": "~10.2.2",
     "expo-linear-gradient": "~9.2.0",

@@ -2792,6 +2792,13 @@ expand-brackets@^2.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
+expo-app-loading@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/expo-app-loading/-/expo-app-loading-1.1.2.tgz#9efcc29d373c2cd2fcddde5a04cb13875a539ac4"
+  integrity sha512-JdWa9CpB4LpIYgh9WLhpr5KoMOaBob03yBcKdSw1TIDgYUtCGfRLouxadpVOtkudY1x4/NN4ZZrH7Y5nB3SdlA==
+  dependencies:
+    expo-splash-screen "~0.11.2"
+
 expo-application@~3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/expo-application/-/expo-application-3.2.0.tgz#d029445cbc486b66f31ec3b8d556334119cebf48"

@@ -2,56 +2,64 @@ import React from 'react'
 import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient';
 import Typography from './Typography';
-import Animated, { Extrapolate, interpolate, useAnimatedStyle, withSpring } from 'react-native-reanimated';
+import Animated, { Easing, Extrapolate, interpolate, interpolateColor, useAnimatedStyle, withSpring, withTiming } from 'react-native-reanimated';
 
 const MaxH = Dimensions.get('window').height/2
 const MinH = 128
-const CreditCard = ({height, index, color}) => {
+const CreditCard = ({height, index, color, type='Visa', number='12233', name='Tester'}) => {
     const animatedStyle = useAnimatedStyle(() => ({
-        height: withSpring(interpolate(
+        height: withTiming(interpolate(
             height.value, 
             [(index -1 ) * MaxH, (index * MaxH)],
             [MinH, MaxH],
             Extrapolate.CLAMP
-            ), {stiffness: 100, damping: 20}) 
+            ), {duration: 200}) 
+    }))
+   
+    const card = useAnimatedStyle(() => ({
+        backgroundColor: interpolateColor(
+            height.value, 
+            [(index -1 ) * MaxH, (index * MaxH)],
+            ['white', 'orangered'],
+            )
     }))
     return (
         <Animated.View
             style={[styles.container, animatedStyle]}
         >
-            <LinearGradient
-                start={{ x: 1, y: 0.2 }}
-                colors = {color}
-                style={styles.gradient}
+            <Animated.View
+                // start={{ x: 1, y: 0.2 }}
+                // colors = {['rgb(255,0,0)', 'white']}
+                style={[styles.card, card]}
             >
                 <Typography 
-                    text="Test Bank"
+                    text={name}
                     fontSize={20}
-                    color='white'
+                    color='black'
                     bold
                 />
                 <Typography 
-                    text={height.value}
+                    text={number}
                     fontSize={20}
-                    color='white'
+                    color='black'
                     bold
                 />
 
                 <View style={styles.cardFotter}>
                     <Typography 
                         text={'ffggg'}
-                        color='white'
+                        color='black'
                     />
                     
                     <Typography 
-                        text={'Visa'}
+                        text={type}
                         color='black'
                         bold
                         fontSize={20}
                     />
                 </View>
 
-            </LinearGradient>
+            </Animated.View>
         </Animated.View>
     )
 }
@@ -63,13 +71,18 @@ const styles = StyleSheet.create({
         marginVertical:0,
         padding:10,
     },
-    gradient:{
+    card:{
         height:'100%',
         maxHeight: 200,
-        padding:10,
+        padding:20,
         borderRadius:10,
         maxWidth:400,
-        justifyContent:'space-between'
+        justifyContent:'space-between',
+        elevation:1,
+        zIndex:100,
+        borderWidth:0,
+        overflow:'hidden',
+        // backgroundColor: 'white'
     },
     cardFotter:{
         flexDirection:'row',

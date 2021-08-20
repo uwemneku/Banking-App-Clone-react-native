@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-import { truncate } from 'fs';
 import React, {useEffect, useState} from 'react';
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
@@ -43,7 +42,6 @@ const AlertBox = ({message="LKKJKJLK"}) => {
   );
 };
 
-export default AlertBox;
 
 const styles = StyleSheet.create({
   container:{
@@ -56,3 +54,5 @@ const styles = StyleSheet.create({
     padding:10
   }
 });
+
+export default AlertBox;

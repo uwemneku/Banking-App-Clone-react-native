@@ -12,5 +12,7 @@
     <string>ALWAYS</string>
     <key>EXUpdatesLaunchWaitMs</key>
     <integer>0</integer>
+    <key>EXUpdatesReleaseChannel</key>
+    <string>default</string>
   </dict>
 </plist>

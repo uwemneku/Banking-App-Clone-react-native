@@ -3,7 +3,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import MainStackNavigation from './Navigation'
-// import AlertBox from './components/AlertBox';
+import AlertBox from './components/AlertBox';
 
 
 export default function App() {
@@ -11,7 +11,7 @@ export default function App() {
     <NavigationContainer>
       <View style={styles.container} >
         <MainStackNavigation />
-        {/* <AlertBox /> */}
+        <AlertBox />
       </View>
     </NavigationContainer>
   );
