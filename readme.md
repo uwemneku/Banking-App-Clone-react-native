@@ -26,7 +26,14 @@ A simple clone of a bank app. [Click here](https://expo.dev/@uwemneku/expoBANKap
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is  a simple clone of Ecobank app
+This is  a simple clone of Ecobank app made with react native Expo
+
+## Todo List
+- [ ] Add state management with redux
+- [ ] Add splash screen
+- [ ] Add Registration screen
+- [X] Add fade in animation
+
 
 ### Prerequisites
 
