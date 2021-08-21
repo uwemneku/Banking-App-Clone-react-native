@@ -30,7 +30,9 @@
     "react-native-screens": "~3.4.0",
     "react-native-unimodules": "~0.14.5",
     "react-native-vector-icons": "^8.1.0",
-    "react-native-web": "~0.13.12"
+    "react-native-web": "~0.13.12",
+    "react-redux": "^7.2.4",
+    "redux": "^4.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"

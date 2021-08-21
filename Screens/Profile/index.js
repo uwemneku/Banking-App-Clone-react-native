@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Dimensions, Pressable, Share, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Avatar from '../../components/Avatar';
+import Divider from '../../components/Divider';
 import Icon from '../../components/Icon';
 import List from '../../components/List';
 import NavList from '../../components/NavList';
@@ -89,6 +90,7 @@ export default function Profile() {
                                 iconName={item.icon}
                                 text={item.name}
                             />
+                            <Divider bgcolor='gray'/>
                         </TouchableOpacity>
                     )
                 }

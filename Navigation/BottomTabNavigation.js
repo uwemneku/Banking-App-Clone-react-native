@@ -39,6 +39,8 @@ const screens = [
         component: More,
     },
 ];
+
+const noHeader = ['HOME']
 const Tab = createBottomTabNavigator();
 export default function BottomTabNavigation() {
 
@@ -50,7 +52,7 @@ export default function BottomTabNavigation() {
                 tabBarLabelStyle:{paddingBottom:10},
                 headerShown:true,
                 header:({route}) => {
-                    const showHeader = route.name !== "HOME"
+                    const showHeader = !noHeader.includes(route.name)
                     return showHeader && <ScreenHeader heading={route.name} showAvatar />
                 }
             }}

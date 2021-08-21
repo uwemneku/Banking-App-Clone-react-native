@@ -1,41 +1,31 @@
-/* eslint-disable prettier/prettier */
-import { StatusBar } from 'expo-status-bar';
-import React from 'react'
-import { Dimensions, ScrollView, StyleSheet, View } from 'react-native'
-import Animated, { useAnimatedScrollHandler, useSharedValue } from 'react-native-reanimated';
-import CreditCard from '../../components/CreditCard';
+import React, { useState } from 'react'
+import { StyleSheet, Switch, Text, View } from 'react-native'
+import Typography from '../../components/Typography'
 
-export default function Notifications() {
-    const y = useSharedValue(0);
-    const onScroll = useAnimatedScrollHandler({
-        onScroll : ({contentOffset: {x: value}}) => { 
-            y.value = value;
-        },
-    })
+const Notifications = () => {
+    const [isNotificationOn, setIsNotificationOn] = useState(false)
     return (
         <View style={styles.container} >
-            <StatusBar hidden backgroundColor='red' />
-            <Animated.ScrollView
-                onScroll={onScroll}
-                scrollEventThrottle={16}
-                horizontal={true}
-                decelerationRate='fast'
-                contentContainerStyle={{width:(21*(Dimensions.get('window').width/2)), alignItems:'center', paddingLeft:100}}
-                snapToInterval={Dimensions.get('window').width/2}
-            >
-                {
-                    new Array(20).fill(2).map((_, i)=> 
-                         <CreditCard height={y} index={i} color={i%2 == 0 ? ['red', 'orange'] : ['white', 'blue']}  key={i}/>
-                    )
-                }
-            </Animated.ScrollView>
+            <View style={{justifyContent:'space-between', flexDirection:'row', padding:10, paddingVertical:20}} >
+                <Typography 
+                    text={`Notifications are turned ${isNotificationOn ? 'on' : 'off'}`}
+                />
+                <Switch 
+                    onValueChange={()=>setIsNotificationOn(!isNotificationOn)} 
+                    value={isNotificationOn} 
+                    trackColor={{false: '#767577', true: 'orangered'}}
+                    thumbColor={'white'}
+                />
+            </View>
         </View>
     )
 }
 
+export default Notifications
+
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:'black'
-    },
+        backgroundColor:'#fff',
+    }
 })

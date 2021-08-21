@@ -2,25 +2,82 @@ import React from 'react'
 import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient';
 import Typography from './Typography';
-import Animated, { Easing, Extrapolate, interpolate, interpolateColor, useAnimatedStyle, withSpring, withTiming } from 'react-native-reanimated';
+import Animated, { concat, Easing, Extrapolate, interpolate, interpolateColor, runOnJS, useAnimatedStyle, withDelay, withSpring, withTiming } from 'react-native-reanimated';
 
 const MaxH = Dimensions.get('window').height/2
 const MinH = 128
-const CreditCard = ({height, index, color, type='Visa', number='12233', name='Tester'}) => {
+
+const getCardColor = (type) => {
+    switch(type){
+        case 'visa':
+            return '#00b6ff'
+            break;
+        case 'master card':
+            return '#fca311'
+            break;
+        case 'amex':
+            return '#ef476f'
+            break;
+        case 'discover':
+            return '#ef233c'
+            break;
+        
+        default:
+            return '#00b6ff'
+            break;
+    }
+}
+
+/**
+ * @param {Object} props
+ * @param {Number} props.index
+ * @param {Number} props.height
+ * @param {String} props.type
+ * @param {String} props.name
+ * @param {String} props.number
+ * @param {String} props.expirationMonth
+ * @param {String} props.expirationYear
+*/
+
+const CreditCard = ({height, index, expirationYear, expirationMonth, type, number, name}) => {
+    let u = interpolate(
+        height.value, 
+        [(index -1 ) * MaxH, (index * MaxH)],
+        [0, 100],
+        Extrapolate.CLAMP
+        )
     const animatedStyle = useAnimatedStyle(() => ({
-        height: withTiming(interpolate(
+        height: withDelay(200, withSpring(interpolate(
             height.value, 
             [(index -1 ) * MaxH, (index * MaxH)],
             [MinH, MaxH],
             Extrapolate.CLAMP
-            ), {duration: 200}) 
+            ), {velocity: 20})),
+        transform: [{scale: withTiming(interpolate(
+                        height.value, 
+                        [(index -1 ) * MaxH, (index * MaxH)],
+                        [0.8, 1],
+                        Extrapolate.CLAMP
+                        ), {duration: 100}) },
+                     
+                    ]
     }))
-   
-    const card = useAnimatedStyle(() => ({
+    const cardColor = getCardColor(type.toLowerCase())
+
+    const cardColorStyle = useAnimatedStyle(() => ({
         backgroundColor: interpolateColor(
             height.value, 
             [(index -1 ) * MaxH, (index * MaxH)],
-            ['white', 'orangered'],
+            ['white', cardColor],
+            )
+    }))
+    
+    const cardNumerStyle = useAnimatedStyle(() => ({
+        opacity: interpolate(
+            height.value, 
+            [(index -1 ) * MaxH, (index * MaxH)],
+            [0, 1],
+            Extrapolate.CLAMP
             )
     }))
     return (
@@ -28,26 +85,26 @@ const CreditCard = ({height, index, color, type='Visa', number='12233', name='Te
             style={[styles.container, animatedStyle]}
         >
             <Animated.View
-                // start={{ x: 1, y: 0.2 }}
-                // colors = {['rgb(255,0,0)', 'white']}
-                style={[styles.card, card]}
+                style={[styles.card, cardColorStyle]}
             >
                 <Typography 
                     text={name}
                     fontSize={20}
-                    color='black'
+                    color='whitesmoke'
                     bold
                 />
-                <Typography 
-                    text={number}
-                    fontSize={20}
-                    color='black'
-                    bold
-                />
+                <Animated.View style={[cardNumerStyle]} >
+                    <Typography 
+                        text={`${number.substring(0, 2)}${ "x".repeat(number.length - 3)}${number[number.length - 1]}`}
+                        fontSize={20}
+                        color='white'
+                        bold
+                    />
+                </Animated.View>
 
                 <View style={styles.cardFotter}>
                     <Typography 
-                        text={'ffggg'}
+                        text={`${expirationMonth}/${expirationYear}`}
                         color='black'
                     />
                     
@@ -82,7 +139,6 @@ const styles = StyleSheet.create({
         zIndex:100,
         borderWidth:0,
         overflow:'hidden',
-        // backgroundColor: 'white'
     },
     cardFotter:{
         flexDirection:'row',

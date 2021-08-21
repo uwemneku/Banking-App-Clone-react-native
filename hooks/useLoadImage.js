@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 /**
- * @param {Array} aspectRatio
+ * @param {Array} aspectRatio The aspect ratio [x, y] to be used to crop the image
 */
 export default function useLoadImage(aspectRatio) {
   const [image, setImage] = useState(null);
