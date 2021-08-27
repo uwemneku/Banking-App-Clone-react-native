@@ -53,15 +53,24 @@ const CreditCard = ({height, index, expirationYear, expirationMonth, type, numbe
             [MinH, MaxH],
             Extrapolate.CLAMP
             ), {velocity: 20})),
+            
         transform: [{scale: withTiming(interpolate(
                         height.value, 
                         [(index -1 ) * MaxH, (index * MaxH)],
                         [0.8, 1],
                         Extrapolate.CLAMP
                         ), {duration: 100}) },
-                     
-                    ]
+                    {
+                        rotateX: withDelay(200, withSpring(interpolate(
+                            height.value, 
+                            [(index -1 ) * MaxH, (index * MaxH)],
+                            [60, 0],
+                            Extrapolate.CLAMP
+                            ) + 'deg', {velocity: 20}))
+                    }  
+                   ]
     }))
+    
     const cardColor = getCardColor(type.toLowerCase())
 
     const cardColorStyle = useAnimatedStyle(() => ({
@@ -135,7 +144,7 @@ const styles = StyleSheet.create({
         borderRadius:10,
         maxWidth:400,
         justifyContent:'space-between',
-        elevation:1,
+        elevation:5,
         zIndex:100,
         borderWidth:0,
         overflow:'hidden',

@@ -8,7 +8,10 @@
 ## About The Project
 
 
-A simple clone of a bank app. [Click here](https://expo.dev/@uwemneku/expoBANKapp) to view the app on expo
+A simple clone of a bank app.
+
+Scan the bar code below to open the app on Expo go or click [Click here](https://expo.dev/@uwemneku/expoBANKapp)
+![barcode][barcode]
 
 1             |  2
 :-------------------------:|:-------------------------:
@@ -112,3 +115,4 @@ Project Link: [https://expo.dev/@uwemneku/expoBANKapp](https://expo.dev/@uwemnek
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: screenshots/1.jpg
 [product-screenshot1]: screenshots/2.jpg
+[barcode]: screenshots/barcode.png
