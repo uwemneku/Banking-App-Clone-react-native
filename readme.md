@@ -14,7 +14,7 @@ Scan the bar code below to open the app on Expo go or click [Click here](https:/
 
 1             |  2
 :-------------------------:|:-------------------------:
-![Product Name Screen Shot][product-screenshot]  |  ![Product Name Screen Shot][product-screenshot1]
+![Product Name Screen Shot][product-screenshot]  | 
 
 ### Built With
 
