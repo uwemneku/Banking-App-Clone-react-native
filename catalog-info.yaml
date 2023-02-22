@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: react-native-digital-bank-app
+  annotations:
+    github.com/project-slug: nmoisesp/react-native-digital-bank-app
+spec:
+  type: other
+  lifecycle: unknown
+  owner: nmoisesp
